@@ -1,6 +1,7 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
+-> /users                   users.Routes
 
 #default
 GET     /                   controllers.Application.index

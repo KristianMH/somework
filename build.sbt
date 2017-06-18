@@ -1,25 +1,14 @@
 name := """driveedu"""
 
 version := "1.0-SNAPSHOT"
+lazy val users = (project in file ("modules/users")).enablePlugins(PlayScala)
+lazy val root = (project in file(".")).enablePlugins(PlayScala).dependsOn(users).aggregate(users)
+Common.sco
+Common.playSettings
+libraryDependencies += specs2 % Test
+libraryDependencies += filters
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
-
-scalaVersion := "2.11.11"
-
-scalacOptions ++= Seq("-feature", "-deprecation", "-unchecked", "-language:reflectiveCalls", "-language:postfixOps", "-language:implicitConversions")
-
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-scalariformSettings
-
-libraryDependencies ++= Seq(
-  specs2 % Test,
-  "org.specs2" %% "specs2-matcher-extra" % "3.8.5" % Test,
-"com.typesafe.play" %% "play-slick" % "2.0.0",
-  "org.postgresql" % "postgresql" % "42.1.1",
-  filters,
-"org.scalatestplus.play" %% "scalatestplus-play" % "2.0.0" % Test
-)
+  scalariformSettings
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "hello.com.controllers._"
 
